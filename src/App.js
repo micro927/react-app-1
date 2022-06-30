@@ -16,11 +16,17 @@ function App() {
     setPosts([newPost, ...posts])
     id += 1;
   }
+
+  function deletePost(id) {
+    const updatedPosts = posts.filter((post) => post.id !== id)
+    setPosts(updatedPosts)
+  }
+
   return (
     <div className="App">
       <Navbar />
       <Input addPost={addPost} />
-      {posts.map((post) => <Post id={post.id} title={post.title} />)}
+      {posts.map((post) => <Post key={post.id} id={post.id} title={post.title} deletePost={deletePost} />)}
     </div>
   );
 }
